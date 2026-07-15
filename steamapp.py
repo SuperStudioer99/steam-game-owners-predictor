@@ -17,10 +17,10 @@ def load_model():
 model = load_model()
 
 @st.cache_resource
-def load_explainer(model):
-    return shap.TreeExplainer(model)
+def load_explainer():
+    return shap.TreeExplainer(load_model())
 
-explainer = load_explainer(model)
+explainer = load_explainer()
 
 st.title("🎮 Steam Game Predictor", anchor=False)
 st.subheader("Enter game data to see its estimated owners and features influences", anchor=False)

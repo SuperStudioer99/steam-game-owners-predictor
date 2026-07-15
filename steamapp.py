@@ -16,6 +16,12 @@ def load_model():
 
 model = load_model()
 
+@st.cache_resource
+def load_explainer(model):
+    return shap.TreeExplainer(model)
+
+explainer = load_explainer(model)
+
 st.title("🎮 Steam Game Predictor", anchor=False)
 st.subheader("Enter game data to see its estimated owners and features influences", anchor=False)
 
@@ -68,7 +74,6 @@ if st.button("🚀 Calculate Estimated Owners", use_container_width=True):
     st.write("---")
     st.subheader("🔍 Influence on Owner Count", anchor=False)
     
-    explainer = shap.TreeExplainer(model)
     shap_results = explainer(input_df)
     base_val = shap_results.base_values[0]
     total_sqrt = base_val + np.sum(shap_results.values[0])

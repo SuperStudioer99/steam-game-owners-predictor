@@ -10,6 +10,7 @@ A machine learning model that predicts the estimated number of owners for Steam 
 - SHAP
 - Streamlit
 - NumPy
+- Pandas
 - Pickle
 
 ## Features
